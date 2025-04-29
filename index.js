@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const routes = require('./src/routes');
 const errorHandling = require('./src/middleware/errorHandling');
 
 require('dotenv').config();
@@ -22,6 +23,9 @@ app.use(morgan('dev'));
 app.head('/ping', (req, res) => {
   res.sendStatus(200);
 });
+
+// handle routes
+routes(app);
 
 // handle error
 app.use(errorHandling);
