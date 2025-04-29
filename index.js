@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const errorHandling = require('./src/middleware/errorHandling');
+
 require('dotenv').config();
 
 const app = express();
@@ -20,6 +22,9 @@ app.use(morgan('dev'));
 app.head('/ping', (req, res) => {
   res.sendStatus(200);
 });
+
+// handle error
+app.use(errorHandling);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
