@@ -12,10 +12,10 @@ router.post('/subjects/search', cardSubjectController.search);
 router.patch('/subjects/:id', requireAuth, cardSubjectController.update);
 router.delete('/subjects/:id', requireAuth, cardSubjectController.remove);
 
-router.post('/questions/:subjectId', requireAuth, cardQuestionController.create);
-router.get('/questions/:subjectId', cardQuestionController.findAll);
+router.post('/subjects/:subjectId/questions', requireAuth, cardQuestionController.create);
+router.get('/subjects/:subjectId/questions', cardQuestionController.findAll);
 router.get('/questions/:id', cardQuestionController.findOne);
-router.post('/subjects/search', cardQuestionController.search);
+router.post('/questions/search', cardQuestionController.search);
 router.patch('/questions/:id', requireAuth, cardQuestionController.update);
 router.delete('/questions/:id', requireAuth, cardQuestionController.remove);
 
