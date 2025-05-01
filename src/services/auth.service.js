@@ -1,5 +1,5 @@
 const { APIError } = require('../error');
-const User = require('../models/User');
+const User = require('../models/user.model');
 const { hashPassword } = require('../utils/auth');
 
 const saveUser = async (username, email, hashedPassword) => {
