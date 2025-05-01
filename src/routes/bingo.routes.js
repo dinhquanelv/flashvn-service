@@ -13,12 +13,12 @@ router.post('/modules/search', bingoModuleController.search);
 router.patch('/modules/:id', requireAuth, bingoModuleController.update);
 router.delete('/modules/:id', requireAuth, bingoModuleController.remove);
 
-router.post('/modules/:moduleId', requireAuth, bingoQuestionController.create);
-router.get('/modules/:moduleId', bingoQuestionController.findAll);
-router.get('/modules/:id', bingoQuestionController.findOne);
-router.post('/modules/search', bingoQuestionController.search);
-router.patch('/modules/:id', requireAuth, bingoQuestionController.update);
-router.delete('/modules/:id', requireAuth, bingoQuestionController.remove);
+router.post('/modules/:moduleId/questions', requireAuth, bingoQuestionController.create);
+router.get('/modules/:moduleId/questions', bingoQuestionController.findAll);
+router.get('/questions/:moduleId/:id', bingoQuestionController.findOne);
+router.post('/questions/search', bingoQuestionController.search);
+router.patch('/questions/:id', requireAuth, bingoQuestionController.update);
+router.delete('/questions/:id', requireAuth, bingoQuestionController.remove);
 
 router.post('/generate/:moduleId', requireAuth, bingoController.generate);
 router.get('/:moduleId/:index', bingoController.findOne);
