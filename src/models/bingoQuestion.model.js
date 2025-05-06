@@ -30,6 +30,7 @@ const bingoQuestionSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    collection: 'bingo_questions',
   },
 );
 

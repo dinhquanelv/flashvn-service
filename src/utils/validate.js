@@ -40,8 +40,16 @@ const isObjectId = (value, fieldName) => {
 };
 
 const isNotEmpty = (value, fieldName) => {
-  if (value === undefined || value === null || value === '') {
+  if (value === undefined || value === null || value === '' || value.length === 0) {
     throw new APIError(`${fieldName} must not be empty!`, 400);
+  }
+};
+
+const isFieldsNotEmpty = (...fields) => {
+  for (const [value, fieldName] of fields) {
+    if (value === undefined || value === null || value === '' || value.length === 0) {
+      throw new APIError(`${fieldName} must not be empty!`, 400);
+    }
   }
 };
 
@@ -53,4 +61,5 @@ module.exports = {
   isObject,
   isObjectId,
   isNotEmpty,
+  isFieldsNotEmpty,
 };
