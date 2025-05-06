@@ -15,7 +15,7 @@ router.delete('/modules/:id', requireAuth, bingoModuleController.remove);
 
 router.post('/modules/:moduleId/questions', requireAuth, bingoQuestionController.create);
 router.get('/modules/:moduleId/questions', bingoQuestionController.findAll);
-router.get('/questions/:moduleId/:id', bingoQuestionController.findOne);
+router.get('/questions/:id', bingoQuestionController.findOne);
 router.post('/questions/search', bingoQuestionController.search);
 router.patch('/questions/:id', requireAuth, bingoQuestionController.update);
 router.delete('/questions/:id', requireAuth, bingoQuestionController.remove);

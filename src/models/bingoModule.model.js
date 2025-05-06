@@ -17,6 +17,7 @@ const bingoModuleSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    collection: 'bingo_modules',
   },
 );
 
