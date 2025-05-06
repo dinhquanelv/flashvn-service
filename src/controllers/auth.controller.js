@@ -1,4 +1,6 @@
 const { toBoolean } = require('validator');
+const { isNotEmpty } = require('../utils/validate');
+const { saveUser, updatePassword, findOneByEmail } = require('../services/auth.service');
 const {
   validateRegister,
   validateLogin,
@@ -7,8 +9,6 @@ const {
   verifyToken,
   sendEmailToResetPassword,
 } = require('../utils/auth');
-const { isNotEmpty } = require('../utils/validate');
-const { saveUser, updatePassword, findOneByEmail } = require('../services/auth.service');
 
 const authController = {
   // [POST] /api/v1/auth/register
