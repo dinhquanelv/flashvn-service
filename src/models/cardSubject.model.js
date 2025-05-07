@@ -15,6 +15,7 @@ const cardSubjectSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    collection: 'card_subjects',
   },
 );
 
