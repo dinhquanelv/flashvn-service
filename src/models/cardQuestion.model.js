@@ -25,6 +25,7 @@ const cardQuestionSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    collection: 'card_questions',
   },
 );
 
