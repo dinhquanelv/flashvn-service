@@ -27,7 +27,7 @@ const userController = {
     }
   },
 
-  // [PATCH] /api/v1/users/:id
+  // [POST] /api/v1/users/:id
   resetPassword: async (req, res, next) => {
     try {
       const { id } = req.params;
