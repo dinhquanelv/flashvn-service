@@ -3,6 +3,7 @@
 ## Project setup
 
 ```bash
+# install dependencies
 $ npm install
 ```
 
