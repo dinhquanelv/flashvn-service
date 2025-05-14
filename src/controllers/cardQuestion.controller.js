@@ -2,7 +2,7 @@ const { isNotEmpty, isString, isObjectId, isFieldsNotEmpty, isArray } = require(
 const { create, findAll, findOne, search, update, remove } = require('../services/cardQuestion.service');
 
 const cardQuestionController = {
-  // [POST] /api/v1/card/subjects/:subjectId/questions
+  // [POST] /api/card/subjects/:subjectId/questions
   create: async (req, res, next) => {
     try {
       const { subjectId } = req.params;
@@ -22,7 +22,7 @@ const cardQuestionController = {
     }
   },
 
-  // [GET] /api/v1/card/subjects/:subjectId/questions
+  // [GET] /api/card/subjects/:subjectId/questions
   findAll: async (req, res, next) => {
     try {
       const { subjectId } = req.params;
@@ -36,7 +36,7 @@ const cardQuestionController = {
     }
   },
 
-  // [GET] /api/v1/card/questions/:id
+  // [GET] /api/card/questions/:id
   findOne: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -50,7 +50,7 @@ const cardQuestionController = {
     }
   },
 
-  // [POST] /api/v1/card/questions/search/:subjectId
+  // [POST] /api/card/questions/search/:subjectId
   search: async (req, res, next) => {
     try {
       const { subjectId } = req.params;
@@ -67,7 +67,7 @@ const cardQuestionController = {
     }
   },
 
-  // [PATCH] /api/v1/card/questions/:id
+  // [PATCH] /api/card/questions/:id
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -87,7 +87,7 @@ const cardQuestionController = {
     }
   },
 
-  // [DELETE] /api/v1/card/questions/:id
+  // [DELETE] /api/card/questions/:id
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;

@@ -3,7 +3,7 @@ const { findAll, findOne } = require('../services/user.service');
 const { updatePassword } = require('../services/auth.service');
 
 const userController = {
-  // [GET] /api/v1/users
+  // [GET] /api/users
   findAll: async (req, res, next) => {
     try {
       const users = await findAll();
@@ -13,7 +13,7 @@ const userController = {
     }
   },
 
-  // [GET] /api/v1/users/:id
+  // [GET] /api/users/:id
   findOne: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -27,7 +27,7 @@ const userController = {
     }
   },
 
-  // [POST] /api/v1/users/:id
+  // [POST] /api/users/:id
   resetPassword: async (req, res, next) => {
     try {
       const { id } = req.params;

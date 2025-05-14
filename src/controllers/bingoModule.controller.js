@@ -9,7 +9,7 @@ const {
 } = require('../services/bingoModule.service');
 
 const bingoModuleController = {
-  // [POST] /api/v1/bingo/modules
+  // [POST] /api/bingo/modules
   create: async (req, res, next) => {
     try {
       const { title, keywords } = req.body;
@@ -28,7 +28,7 @@ const bingoModuleController = {
     }
   },
 
-  // [GET] /api/v1/bingo/modules
+  // [GET] /api/bingo/modules
   findAll: async (req, res, next) => {
     try {
       const modules = await findAllModule();
@@ -39,7 +39,7 @@ const bingoModuleController = {
     }
   },
 
-  // [GET] /api/v1/bingo/modules/:id
+  // [GET] /api/bingo/modules/:id
   findOne: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -53,7 +53,7 @@ const bingoModuleController = {
     }
   },
 
-  // [POST] /api/v1/bingo/modules/search
+  // [POST] /api/bingo/modules/search
   search: async (req, res, next) => {
     try {
       const { query } = req.body;
@@ -65,7 +65,7 @@ const bingoModuleController = {
     }
   },
 
-  // [PATCH] /api/v1/bingo/modules/:id
+  // [PATCH] /api/bingo/modules/:id
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -84,7 +84,7 @@ const bingoModuleController = {
     }
   },
 
-  // [DELETE] /api/v1/bingo/modules/:id
+  // [DELETE] /api/bingo/modules/:id
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;

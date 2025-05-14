@@ -11,7 +11,7 @@ const {
 } = require('../utils/auth');
 
 const authController = {
-  // [POST] /api/v1/auth/register
+  // [POST] /api/auth/register
   register: async (req, res, next) => {
     try {
       const { username, email, password } = req.body;
@@ -26,7 +26,7 @@ const authController = {
     }
   },
 
-  // [POST] /api/v1/auth/login
+  // [POST] /api/auth/login
   login: async (req, res, next) => {
     try {
       const { username, password } = req.body;
@@ -57,7 +57,7 @@ const authController = {
     }
   },
 
-  // [POST] /api/v1/auth/logout
+  // [POST] /api/auth/logout
   logout: async (req, res, next) => {
     try {
       res.clearCookie('accessToken', {
@@ -77,7 +77,7 @@ const authController = {
     }
   },
 
-  // [POST] /api/v1/auth/forgot-password
+  // [POST] /api/auth/forgot-password
   forgotPassword: async (req, res, next) => {
     try {
       const { email } = req.body;
@@ -92,7 +92,7 @@ const authController = {
     }
   },
 
-  // [POST] /api/v1/auth/reset-password
+  // [POST] /api/auth/reset-password
   resetPassword: async (req, res, next) => {
     try {
       const { token } = req.query;

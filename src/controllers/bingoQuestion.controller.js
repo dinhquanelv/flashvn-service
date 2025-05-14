@@ -9,7 +9,7 @@ const {
 } = require('../services/bingoQuestion.service');
 
 const bingoQuestionController = {
-  // [POST] /api/v1/bingo/modules/:moduleId/questions
+  // [POST] /api/bingo/modules/:moduleId/questions
   create: async (req, res, next) => {
     try {
       const { moduleId } = req.params;
@@ -36,7 +36,7 @@ const bingoQuestionController = {
     }
   },
 
-  // [GET] /api/v1/bingo/modules/:moduleId/questions
+  // [GET] /api/bingo/modules/:moduleId/questions
   findAll: async (req, res, next) => {
     try {
       const { moduleId } = req.params;
@@ -51,7 +51,7 @@ const bingoQuestionController = {
     }
   },
 
-  // [GET] /api/v1/bingo/questions/:id
+  // [GET] /api/bingo/questions/:id
   findOne: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -66,7 +66,7 @@ const bingoQuestionController = {
     }
   },
 
-  // [POST] /api/v1/bingo/questions/search
+  // [POST] /api/bingo/questions/search
   search: async (req, res, next) => {
     try {
       const { query } = req.body;
@@ -78,7 +78,7 @@ const bingoQuestionController = {
     }
   },
 
-  // [PATCH] /api/v1/bingo/questions/:id
+  // [PATCH] /api/bingo/questions/:id
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -105,7 +105,7 @@ const bingoQuestionController = {
     }
   },
 
-  // [DELETE] /api/v1/bingo/questions/:id
+  // [DELETE] /api/bingo/questions/:id
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;

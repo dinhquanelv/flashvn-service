@@ -2,7 +2,7 @@ const { isNotEmpty, isString, isObjectId, isFieldsNotEmpty } = require('../utils
 const { create, findAllByGroup, findOne, search, update, remove } = require('../services/cardSubject.service');
 
 const cardSubjectController = {
-  // [POST] /api/v1/card/subjects
+  // [POST] /api/card/subjects
   create: async (req, res, next) => {
     try {
       const { title, group } = req.body;
@@ -21,7 +21,7 @@ const cardSubjectController = {
     }
   },
 
-  // [GET] /api/v1/card/subjects
+  // [GET] /api/card/subjects
   findAllByGroup: async (req, res, next) => {
     try {
       const { group } = req.query;
@@ -37,7 +37,7 @@ const cardSubjectController = {
     }
   },
 
-  // [GET] /api/v1/card/subjects/:id
+  // [GET] /api/card/subjects/:id
   findOne: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -53,7 +53,7 @@ const cardSubjectController = {
     }
   },
 
-  // [POST] /api/v1/card/subjects/search
+  // [POST] /api/card/subjects/search
   search: async (req, res, next) => {
     try {
       const { title, group } = req.body;
@@ -70,7 +70,7 @@ const cardSubjectController = {
     }
   },
 
-  // [PATCH] /api/v1/card/subjects/:id
+  // [PATCH] /api/card/subjects/:id
   update: async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -89,7 +89,7 @@ const cardSubjectController = {
     }
   },
 
-  // [DELETE] /api/v1/card/subjects/:id
+  // [DELETE] /api/card/subjects/:id
   remove: async (req, res, next) => {
     try {
       const { id } = req.params;
