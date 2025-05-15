@@ -2,7 +2,7 @@ const { APIError } = require('../error');
 const User = require('../models/user.model');
 const { hashPassword } = require('../utils/auth');
 
-const saveUser = async (username, email, hashedPassword) => {
+const createUser = async (username, email, hashedPassword) => {
   const newUser = new User({
     username,
     email,
@@ -31,7 +31,7 @@ const findOneByEmail = async (email) => {
 };
 
 module.exports = {
-  saveUser,
+  createUser,
   updatePassword,
   findOneByEmail,
 };

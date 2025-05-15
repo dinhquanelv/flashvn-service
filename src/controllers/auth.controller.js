@@ -1,6 +1,6 @@
 const { toBoolean } = require('validator');
-const { isNotEmpty } = require('../utils/validate');
-const { saveUser, updatePassword, findOneByEmail } = require('../services/auth.service');
+const { isNotEmpty, isString } = require('../utils/validate');
+const { createUser, updatePassword, findOneByEmail } = require('../services/auth.service');
 const {
   validateRegister,
   validateLogin,
@@ -18,7 +18,7 @@ const authController = {
       await validateRegister(username, email, password);
 
       const hashedPassword = await hashPassword(password);
-      await saveUser(username, email, hashedPassword);
+      await createUser(username, email, hashedPassword);
 
       return res.status(201).json({ message: 'Register successfully!' });
     } catch (error) {
@@ -42,12 +42,6 @@ const authController = {
           sameSite: process.env.COOKIES_SAME_SITE,
           maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
-        res.cookie('userId', user._id, {
-          httpOnly: true,
-          secure: toBoolean(process.env.COOKIES_SECURE),
-          sameSite: process.env.COOKIES_SAME_SITE,
-          maxAge: 24 * 60 * 60 * 1000, // 1 day
-        });
 
         const { password, ...others } = user._doc;
         return res.status(200).json({ ...others });
@@ -65,11 +59,6 @@ const authController = {
         secure: toBoolean(process.env.COOKIES_SECURE),
         sameSite: process.env.COOKIES_SAME_SITE,
       });
-      res.clearCookie('userId', {
-        httpOnly: true,
-        secure: toBoolean(process.env.COOKIES_SECURE),
-        sameSite: process.env.COOKIES_SAME_SITE,
-      });
 
       return res.status(200).json({ message: 'Log out successfully!' });
     } catch (error) {
@@ -81,6 +70,9 @@ const authController = {
   forgotPassword: async (req, res, next) => {
     try {
       const { email } = req.body;
+      isNotEmpty(email, 'Email');
+      isString(email, 'Email');
+
       const user = await findOneByEmail(email);
 
       const resetToken = generateToken({ id: user._id }, process.env.JWT_RESET_KEY, '15m');
@@ -99,10 +91,13 @@ const authController = {
       const { newPassword } = req.body;
 
       isNotEmpty(token, 'Token');
-      isNotEmpty(newPassword, 'New Password');
+      isString(token, 'Token');
 
-      const decode = verifyToken(token);
-      await updatePassword(decode.payload.id, newPassword);
+      isNotEmpty(newPassword, 'New Password');
+      isString(newPassword, 'New Password');
+
+      const user = verifyToken(token, process.env.JWT_RESET_KEY);
+      await updatePassword(user.id, newPassword);
 
       return res.status(200).json({ message: 'Reset password successfully!' });
     } catch (error) {

@@ -71,23 +71,19 @@ const validateLogin = async (username, password) => {
 };
 
 const hashPassword = async (password) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  return hashedPassword;
+  return await bcrypt.hash(password, 10);
 };
 
 const generateToken = (payload, jwtKey, time) => {
-  const token = jwt.sign({ payload }, jwtKey, { expiresIn: time });
-  return token;
+  return jwt.sign(payload, jwtKey, { expiresIn: time });
 };
 
 const verifyToken = (token) => {
-  let decode;
   try {
-    decode = jwt.verify(token, process.env.JWT_RESET_KEY);
+    return jwt.verify(token, jwtKey);
   } catch (err) {
-    return res.status(400).json({ message: 'Invalid token!' });
+    console.log(err);
   }
-  return decode;
 };
 
 const sendEmailToResetPassword = async (email, resetToken) => {
