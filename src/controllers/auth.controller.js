@@ -33,14 +33,14 @@ const authController = {
 
       const user = await validateLogin(username, password);
       if (user) {
-        const accessToken = generateToken({ id: user._id }, process.env.JWT_ACCESS_KEY, '1m');
+        const accessToken = generateToken({ id: user._id }, process.env.JWT_ACCESS_KEY, '1d');
 
         // store token and userId in cookies
         res.cookie('accessToken', accessToken, {
           httpOnly: true,
           secure: toBoolean(process.env.COOKIES_SECURE),
           sameSite: process.env.COOKIES_SAME_SITE,
-          maxAge: 60 * 1000, // 1 day
+          maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
 
         const { password, ...others } = user._doc;
