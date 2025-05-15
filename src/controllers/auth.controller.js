@@ -33,14 +33,14 @@ const authController = {
 
       const user = await validateLogin(username, password);
       if (user) {
-        const accessToken = generateToken({ id: user._id }, process.env.JWT_ACCESS_KEY, '1d');
+        const accessToken = generateToken({ id: user._id }, process.env.JWT_ACCESS_KEY, '1m');
 
         // store token and userId in cookies
         res.cookie('accessToken', accessToken, {
           httpOnly: true,
           secure: toBoolean(process.env.COOKIES_SECURE),
           sameSite: process.env.COOKIES_SAME_SITE,
-          maxAge: 24 * 60 * 60 * 1000, // 1 day
+          maxAge: 60 * 1000, // 1 day
         });
 
         const { password, ...others } = user._doc;
@@ -100,6 +100,21 @@ const authController = {
       await updatePassword(user.id, newPassword);
 
       return res.status(200).json({ message: 'Reset password successfully!' });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  // [GET] /api/auth/me
+  me: async (req, res, next) => {
+    try {
+      const accessToken = req.cookies?.accessToken;
+
+      if (!accessToken) {
+        return res.status(401).json({ isAuthenticated: false, message: 'No token provided' });
+      }
+
+      return res.status(200).json({ isAuthenticated: true, message: 'Token OK' });
     } catch (error) {
       next(error);
     }
