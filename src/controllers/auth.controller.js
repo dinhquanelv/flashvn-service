@@ -104,6 +104,21 @@ const authController = {
       next(error);
     }
   },
+
+  // [GET] /api/auth/me
+  me: async (req, res, next) => {
+    try {
+      const accessToken = req.cookies?.accessToken;
+
+      if (!accessToken) {
+        return res.status(401).json({ isAuthenticated: false, message: 'No token provided' });
+      }
+
+      return res.status(200).json({ isAuthenticated: true, message: 'Token OK' });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 module.exports = authController;
