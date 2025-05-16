@@ -5,6 +5,7 @@ const cardRouter = require('./card.routes');
 const bingoRouter = require('./bingo.routes');
 const futureTellerRouter = require('./futureTeller.routes');
 const raceRouter = require('./race.routes');
+const trustOrSelfRouter = require('./trustOrSelf.routes');
 
 const routes = (app) => {
   app.use(`/api/auth`, authRouter);
@@ -13,6 +14,7 @@ const routes = (app) => {
   app.use(`/api/bingo`, bingoRouter);
   app.use(`/api/future-teller`, futureTellerRouter);
   app.use(`/api/race`, raceRouter);
+  app.use(`/api/trust-or-self`, trustOrSelfRouter);
   app.use(`/`, siteRouter);
 };
 
