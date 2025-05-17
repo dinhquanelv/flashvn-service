@@ -7,6 +7,7 @@ const futureTellerRouter = require('./futureTeller.routes');
 const raceRouter = require('./race.routes');
 
 const routes = (app) => {
+  app.use(`/api/milrace`, raceRouter);
   app.use(`/api/auth`, authRouter);
   app.use(`/api/users`, userRouter);
   app.use(`/api/card`, cardRouter);
