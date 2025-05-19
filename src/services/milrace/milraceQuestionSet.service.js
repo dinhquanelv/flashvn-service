@@ -1,5 +1,5 @@
-const { APIError } = require('../error');
-const MilraceQuestionSet = require('../models/milrace.model');
+const { APIError } = require('../../error');
+const MilraceQuestionSet = require('../../models/milrace/milraceQuestionSet.model');
 
 // Thêm mới bộ câu hỏi
 const createQuestionSet = async ({ title, questions }) => {

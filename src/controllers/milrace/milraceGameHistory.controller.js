@@ -1,27 +1,26 @@
-const { createGameHistory, getAllGameHistories } = require('../services/milraceGameHistory.service');
-const { isNotEmpty, isString } = require('../utils/validate');
+const { createGameHistory, getAllGameHistories } = require('../../services/milrace/milraceQuestion.services');
+const { isNotEmpty, isString } = require('../../utils/validate');
 
 const milraceGameHistoryController = {
   // [POST] /milrace-game-history
   create: async (req, res, next) => {
     try {
-      const { questionSetTitle, player1, player2, player3, player4, player5 } = req.body;
+      const { players, questionSetTitle } = req.body;
 
-      [questionSetTitle, player1, player2, player3, player4, player5].forEach((value, idx) => {
-        isNotEmpty(value, `player${idx === 0 ? 'Title' : idx}`);
-        isString(value, `player${idx === 0 ? 'Title' : idx}`);
+      isNotEmpty(questionSetTitle, 'questionSetTitle');
+      isString(questionSetTitle, 'questionSetTitle');
+
+      if (!Array.isArray(players) || players.length === 0) {
+        throw new Error('players phải là một mảng hợp lệ');
+      }
+
+      // Gọi service đã cập nhật
+      const result = await createGameHistory({ players, questionSetTitle });
+
+      return res.status(201).json({
+        message: 'Lưu lịch sử thành công',
+        data: result,
       });
-
-      const result = await createGameHistory({
-        questionSetTitle,
-        player1,
-        player2,
-        player3,
-        player4,
-        player5,
-      });
-
-      return res.status(201).json(result);
     } catch (error) {
       next(error);
     }

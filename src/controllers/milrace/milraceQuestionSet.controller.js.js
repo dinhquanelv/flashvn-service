@@ -1,6 +1,6 @@
 const { createQuestionSet } = require('../../services/milrace/milraceQuestionSet.service');
-const { getAllSets, getSetById, updateSet, deleteSet } = require('../services/milraceQuestionSet.service');
-const { isNotEmpty, isObjectId } = require('../utils/validate');
+const { getAllSets, getSetById, updateSet, deleteSet } = require('../../services/milrace/milraceQuestionSet.service');
+const { isNotEmpty, isObjectId, isString } = require('../../utils/validate');
 
 const milraceQuestionSetController = {
   // [POST] /milrace-question-set

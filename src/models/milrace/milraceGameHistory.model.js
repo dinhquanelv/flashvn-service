@@ -10,9 +10,9 @@ const MilraceGameHistorySchema = new mongoose.Schema(
     player5: { type: String, required: true },
   },
   {
-    timestamps: true, // Thêm trường createdAt và updatedAt
+    timestamps: true,
+    collection: 'milrace_gameHistory',
   },
 );
 
-export const GameHistory =
-  mongoose.models.MilraceGameHistory || mongoose.model('MilraceGameHistory', MilraceGameHistorySchema);
+module.exports =  mongoose.model('MilraceGameHistory', MilraceGameHistorySchema);

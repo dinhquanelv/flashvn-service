@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const MilraceQuestionSchema = new mongoose.Schema({
   index: Number,
@@ -7,10 +7,15 @@ const MilraceQuestionSchema = new mongoose.Schema({
   ans: String,
 });
 
-const MilraceQuestionSetSchema = new mongoose.Schema({
-  title: { type: String, required: true, unique: true },
-  questions: [MilraceQuestionSchema],
-});
+const MilraceQuestionSetSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, unique: true },
+    questions: [MilraceQuestionSchema],
+  },
+  {
+    timestamps: true,
+    collection: 'milrace_questionSet',
+  },
+);
 
-export const MilraceQuestionSet =
-  mongoose.models.MilraceQuestionSet || mongoose.model('MilraceQuestionSet', MilraceQuestionSetSchema);
+module.exports = mongoose.model('MilraceQuestionSet', MilraceQuestionSetSchema);
