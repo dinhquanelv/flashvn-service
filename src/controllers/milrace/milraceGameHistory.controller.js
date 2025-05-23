@@ -18,7 +18,8 @@ const milraceGameHistoryController = {
       const result = await createGameHistory({ players, questionSetTitle });
 
       return res.status(201).json({
-        message: 'Lưu lịch sử thành công',
+        success: true,
+        message: 'Lưu lịch sử trò chơi thành công',
         data: result,
       });
     } catch (error) {
@@ -30,7 +31,11 @@ const milraceGameHistoryController = {
   getAll: async (_req, res, next) => {
     try {
       const histories = await getAllGameHistories();
-      return res.status(200).json(histories);
+      return res.status(200).json({
+        success: true,
+        message: 'Lấy lịch sử trò chơi thành công',
+        data: histories,
+      });
     } catch (error) {
       next(error);
     }

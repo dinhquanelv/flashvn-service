@@ -12,7 +12,11 @@ const milraceQuestionSetController = {
       isString(title, 'title');
 
       const result = await createQuestionSet({ title, questions });
-      return res.status(201).json(result);
+      return res.status(201).json({
+        success: true,
+        message: 'Tạo bộ câu hỏi thành công',
+        data: result,
+      });
     } catch (error) {
       next(error);
     }
@@ -22,7 +26,11 @@ const milraceQuestionSetController = {
   getAll: async (_req, res, next) => {
     try {
       const sets = await getAllSets();
-      return res.status(200).json(sets);
+      return res.status(200).json({
+        success: true,
+        message: 'Lấy danh sách bộ câu hỏi thành công',
+        data: sets,
+      });
     } catch (error) {
       next(error);
     }
@@ -36,7 +44,11 @@ const milraceQuestionSetController = {
       isObjectId(id, 'id');
 
       const set = await getSetById(id);
-      return res.status(200).json(set);
+      return res.status(200).json({
+        success: true,
+        message: 'Lấy thông tin bộ câu hỏi thành công',
+        data: set,
+      });
     } catch (error) {
       next(error);
     }
@@ -50,9 +62,13 @@ const milraceQuestionSetController = {
 
       isNotEmpty(id, 'id');
       isObjectId(id, 'id');
-
+      console.log(id, title, questions);
       const updated = await updateSet(id, { title, questions });
-      return res.status(200).json(updated);
+      return res.status(200).json({
+        success: true,
+        message: 'Cập nhật bộ câu hỏi thành công',
+        data: updated,
+      });
     } catch (error) {
       next(error);
     }
@@ -67,7 +83,11 @@ const milraceQuestionSetController = {
       isObjectId(id, 'id');
 
       const deleted = await deleteSet(id);
-      return res.status(200).json({ message: 'Deleted successfully', deleted });
+      return res.status(200).json({
+        success: true,
+        message: 'Xóa bộ câu hỏi thành công',
+        data: deleted,
+      });
     } catch (error) {
       next(error);
     }
